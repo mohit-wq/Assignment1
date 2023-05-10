@@ -9,14 +9,14 @@ public class Product {
 
     // Constructor, getters, and setters
 
-    @Override
+    //Override
     public String toString() {
         return "Product [prodId=" + prodId + ", prodName=" + prodName + ", price=" + price + ", quantity=" + quantity
                 + ", discount=" + discount + "]";
     }
 }
 
-***********************************************************************************************
+//***********************************************************************************************
 package com.careercamp.service;
 
 public class ProductNotFoundException extends Exception {
@@ -25,7 +25,7 @@ public class ProductNotFoundException extends Exception {
     }
 }
 
-******************************************************************************************
+//******************************************************************************************
 package com.careercamp.dao;
 
 import com.careercamp.dto.Product;
@@ -48,8 +48,8 @@ public interface ProductDao {
 
     Product[] getProductsByDiscountOrder(boolean ascending);
 }
-************************************************************************************************
-****************************************************************************************************
+//************************************************************************************************
+//****************************************************************************************************
 package com.careercamp.dao;
 
 import com.careercamp.dto.Product;
@@ -67,12 +67,12 @@ public class InMemoryProductDao implements ProductDao {
         this.products = new ArrayList<>();
     }
 
-    @Override
+    //Override
     public void addProduct(Product product) {
         products.add(product);
     }
 
-    @Override
+    //Override
     public void deleteProduct(String prodId) throws ProductNotFoundException {
         boolean removed = products.removeIf(p -> p.getProdId().equals(prodId));
         if (!removed) {
@@ -80,7 +80,7 @@ public class InMemoryProductDao implements ProductDao {
         }
     }
 
-    @Override
+    //Override
     public void updateProduct(Product product) throws ProductNotFoundException {
         int index = getProductIndex(product.getProdId());
         if (index != -1) {
@@ -90,7 +90,7 @@ public class InMemoryProductDao implements ProductDao {
         }
     }
 
-    @Override
+    //Override
     public Product searchProductById(String prodId) throws ProductNotFoundException {
         int index = getProductIndex(prodId);
         if (index != -1) {
@@ -100,7 +100,7 @@ public class InMemoryProductDao implements ProductDao {
         }
     }
 
-    @Override
+    //Override
     public Product searchProductByName(String prodName) throws ProductNotFoundException {
         for (Product product : products) {
             if (product.getProdName().equals(prodName)) {
@@ -110,7 +110,7 @@ public class InMemoryProductDao implements ProductDao {
         throw new ProductNotFoundException("Product with name '" + prodName + "' not found.");
     }
 
-    @Override
+    //Override
     public Product[] getAllProducts() {
         return products.toArray(new Product[0]);
     }
